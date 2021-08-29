@@ -13,7 +13,7 @@
 public class BubbleSort {
 
     /**
-     * Sort method.
+     * Sorts the elements in the given array (ascending).
      *
      * @param array
      *            an array contains element to be sorted
@@ -55,13 +55,67 @@ public class BubbleSort {
     }
 
     /**
+     * Sorts the elements in the given array (descending).
+     *
+     * @param array
+     *            an array contains element to be sorted
+     *
+     * @return an array with sorted elements
+     */
+    public int[] sortDescending(int[] array) {
+        //vars
+        int tmp;
+        boolean sorted = false;
+        boolean swapped = true;
+
+        //as long as it's not sorted
+        while(!sorted) {
+
+            if(!swapped) {
+                sorted = true;
+            }
+
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] < array[i + 1]) {
+
+                    //elements are not sorted for sure
+                    sorted = false;
+
+                    //swap the elements
+                    tmp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = tmp;
+                }
+                else {
+                    swapped = false;
+                }
+            }
+        }
+
+        //return the sorted elements
+        return array;
+    }
+
+    /**
      * Main method. You can use this example for testing.
      */
     public static void main(String[] args) {
         BubbleSort test = new BubbleSort();
+
+        //Array that will be sorted
         int[] array = {5,6,5,-8,1};
-        int[] result = test.sortAscending(array);
-        for(int element : result) {
+
+        //ascending
+        int[] resultAsc = test.sortAscending(array);
+        for(int element : resultAsc) {
+            System.out.print(element + " ");
+        }
+
+        System.out.println();
+
+        //descending
+        int[] resultDesc = test.sortDescending(array);
+        for(int element : resultDesc) {
             System.out.print(element + " ");
         }
     }
