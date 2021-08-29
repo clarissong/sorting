@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * A class that implements the bubble sorting algorithm.
  *
@@ -21,6 +23,7 @@ public class BubbleSort {
      * @return an array with sorted elements
      */
     public int[] sortAscending(int[] array) {
+
         //vars
         int tmp;
         boolean sorted = false;
@@ -63,37 +66,22 @@ public class BubbleSort {
      * @return an array with sorted elements
      */
     public int[] sortDescending(int[] array) {
-        //vars
-        int tmp;
-        boolean sorted = false;
-        boolean swapped = true;
 
-        //as long as it's not sorted
-        while(!sorted) {
+        //array for the inverted element
+        int[] inverted = new int[array.length];
 
-            if(!swapped) {
-                sorted = true;
-            }
+        //sort the element (ascending)
+        array = sortAscending(array);
 
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] < array[i + 1]) {
-
-                    //elements are not sorted for sure
-                    sorted = false;
-
-                    //swap the elements
-                    tmp = array[i + 1];
-                    array[i + 1] = array[i];
-                    array[i] = tmp;
-                }
-                else {
-                    swapped = false;
-                }
-            }
+        //invert the elements
+        int index = array.length - 1;
+        for(int element : array) {
+            inverted[index] = element;
+            index--;
         }
 
         //return the sorted elements
-        return array;
+        return inverted;
     }
 
     /**
@@ -103,20 +91,13 @@ public class BubbleSort {
         BubbleSort test = new BubbleSort();
 
         //Array that will be sorted
-        int[] array = {5,6,5,-8,1};
+        int[] array = {5,6,5,-8,1}; //asc
+        int[] array2 = {-1,2,-3,4,-5,6}; //desc
 
         //ascending
-        int[] resultAsc = test.sortAscending(array);
-        for(int element : resultAsc) {
-            System.out.print(element + " ");
-        }
-
-        System.out.println();
+        System.out.println(Arrays.toString(test.sortAscending(array)));
 
         //descending
-        int[] resultDesc = test.sortDescending(array);
-        for(int element : resultDesc) {
-            System.out.print(element + " ");
-        }
+        System.out.println(Arrays.toString(test.sortDescending(array2)));
     }
 }
