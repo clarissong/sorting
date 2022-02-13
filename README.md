@@ -1,2 +1,2 @@
 # sorting
-My journey (re-)learning sorting algorithms
+My journey on (re-)learning the sorting algorithms
